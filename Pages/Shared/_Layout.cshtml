@@ -1,0 +1,126 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Kaban Board by Warren Brodie">
+    <meta name="author" content="Warren Brodie">
+    <title>@ViewData["Title"] - Kaban Whiteboad</title>
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+        <link href="~/css/StickyNotes.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="~/lib/fontawesome/css/all.css">
+        <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah" rel="stylesheet" type="text/css">
+
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+
+    </environment>
+</head>
+<body class="no-scroll">
+    <nav class="navbar navbar-inverse navbar-fixed-top" style="z-index: 1000002;">
+        <div class="container1">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a asp-page="/Index" class="navbar-brand">Kaban Whiteboard</a>
+            </div>
+            <div class="navbar-collapse collapse" style="padding-right: 35px;">
+                <ul class="nav navbar-nav">
+                    <li><a asp-page="/Index">Home</a></li>
+                    <li>
+                        <div class="dropdown-item">
+                            <button class="dropbtn-item">Archive</button>
+                            <div id="view" class="dropdown-item-content">
+                                <a class="project-add1" href="javascript:;" id="yesArchive">True</a>
+                                <a class="project-add1" href="javascript:;" id="noArchive">False</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="javascript:;" id="add_Col">Column</a></li>
+                    <li><a href="javascript:;" id="add_UACol">Work Area</a></li>
+                    <li>
+                        <div class="dropdown-nav">
+                            <button class="dropbtn-nav">Hide/Show</button>
+                            <div id="hide" class="dropdown-nav-content">
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="dropdown-item">
+                            <button class="dropbtn-item">View</button>
+                            <div id="view" class="dropdown-item-content">
+                                <a class="project-add1" href="javascript:;" id="viewCol">Column</a>
+                                <a class="project-add1" href="javascript:;" id="viewStack">Stack</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="javascript:;" id="start_Chat">Chat</a></li>
+                    <li><a href="javascript:;" id="start_Board">WhiteBoard</a></li>
+                    <li><a href="javascript:;" id="snap_Board">Snap Shot</a></li>
+                    <li><a href="javascript:;" id="clip_Board">Clipboard</a></li>
+                    <li><a asp-page="/About">About</a></li>
+                    <li><a asp-page="/Contact">Contact</a></li>
+                </ul>
+                <a class="project-change" href="javascript:;" id="delete_Proj_Button"><i class="fas fa-times-circle menuicon-edit" style="padding:3px 5px 3px 3px;"></i></a>
+                <a class="project-change" href="javascript:;" id="edit_Proj_Button"><i class="fas fa-check-circle menuicon-edit" style="padding:3px 5px 3px 3px;"></i></a>
+                <div class="dropdown">
+                    <button class="dropbtn"><i class="fas fa-caret-square-down menuicon-edit"></i></button>
+                    <div class="dropdown-content">
+                        <a class="project-add1" href="javascript:;" id="add_Proj">add</a>
+                        <a class="project-update1" href="javascript:;" id="update_Proj">edit</a>
+                        <a class="project-delete1" href="javascript:;" id="delete_Proj">delete</a>
+                    </div>
+                </div>
+                <div class="name-dropdown">
+                    <input class="project-input" id="projectName1" type="text" />
+                    <select class="project-dd" id="projectDD" name="projectDesc" onchange="$('#projectName1').val($('#projectDD').children('option:selected').text()); displayColumns('https://localhost:44382/api/column/', 'https://localhost:44382/api/notes', $('#projectDD').val(),$(window).height()); $('#projectName1').focus();"></select>
+                </div>
+            </div>
+
+        </div>
+    </nav>
+
+    <partial name="_CookieConsentPartial" />
+
+    <div class="container body-content body-scrollbar bord-scroll bord-track bord-thumb" id="body" ondrop="drop(event)" ondragover="allowDrop(event)" style="width: 100%; position: relative;background-color: #eeeeee">
+        @RenderBody()
+    </div>        <img id="captured" />
+
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/lib/signalr/dist/browser/signalr.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        <script src="~/js/html2canvas.js" asp-append-version="true"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT">
+        </script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd">
+        </script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+    </environment>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
