@@ -12540,11 +12540,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\WBSoft\\Kaban_Whiteboard\\Kaban_Whiteboard.csproj",
+      "projectUniqueName": "C:\\Users\\Conno\\OneDrive\\Desktop\\Kaban\\Kaban_Whiteboard.csproj",
       "projectName": "Kaban_Whiteboard",
-      "projectPath": "F:\\WBSoft\\Kaban_Whiteboard\\Kaban_Whiteboard.csproj",
+      "projectPath": "C:\\Users\\Conno\\OneDrive\\Desktop\\Kaban\\Kaban_Whiteboard.csproj",
       "packagesPath": "C:\\Users\\Conno\\.nuget\\packages\\",
-      "outputPath": "F:\\WBSoft\\Kaban_Whiteboard\\obj\\",
+      "outputPath": "C:\\Users\\Conno\\OneDrive\\Desktop\\Kaban\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Conno\\AppData\\Roaming\\NuGet\\NuGet.Config",
