@@ -65,7 +65,7 @@ namespace Kaban_Whiteboard
             app.UseStaticFiles(new StaticFileOptions
             {
                 FileProvider = new PhysicalFileProvider(
-                    Path.Combine(Directory.GetCurrentDirectory(), "MyStaticFiles")),
+                    Path.Combine(Directory.GetCurrentDirectory(), "wwwroot")),
                 RequestPath = "/postit"
             });
             app.UseSignalR(routes =>
