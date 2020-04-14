@@ -2236,7 +2236,7 @@ function delNote(url, postitId) {
 
 
 function myFunction(type, selectItem) {
-    axios.get('https://localhost:44382/api/process') 
+    axios.get('https://www.itdsolutions.com.au/postit/api/process') 
         .then((response) => {
             let dropdown = $('#projectDD');
             dropdown.empty();
