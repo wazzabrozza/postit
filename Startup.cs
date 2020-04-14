@@ -60,12 +60,11 @@ namespace Kaban_Whiteboard
             }
 
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
             app.UseCookiePolicy();
             app.UseStaticFiles(new StaticFileOptions
             {
                 FileProvider = new PhysicalFileProvider(
-                    Path.Combine(Directory.GetCurrentDirectory(), "wwwroot")),
+                    Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot")),
                 RequestPath = "/postit"
             });
             app.UseSignalR(routes =>
