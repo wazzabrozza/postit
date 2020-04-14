@@ -58,15 +58,15 @@ namespace Kaban_Whiteboard
                 app.UseExceptionHandler("/Error");
                 app.UseHsts();
             }
-
+            app.UseStaticFiles();
             app.UseHttpsRedirection();
             app.UseCookiePolicy();
-            app.UseStaticFiles(new StaticFileOptions
+            /*app.UseStaticFiles(new StaticFileOptions
             {
                 FileProvider = new PhysicalFileProvider(
                     Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot")),
                 RequestPath = "/postit"
-            });
+            });*/
             app.UseSignalR(routes =>
             {
                 routes.MapHub<ChatHub>("/chatHub");
